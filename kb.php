@@ -1,6 +1,8 @@
 <?php
 include 'service.php';
+include 'kbData.php';
 include 'kbProvider.php';
+include 'kbCollection.php';
 
 class kbService extends service {
 	public function __construct($configFile) {
@@ -24,9 +26,19 @@ class kbService extends service {
 	public function getProviders() {
 		$opt = $this->getDefaultOptions();
 		$opt['itemsPerPage'] = 10000;
-		$req = $this->getUrl("providers");
+		$req = $this->getUrl("providers", $opt);
 		$json = $this->getResponseJson($req);
 		$providers = kbProvider::getProviders($json['entries']);
 		return $providers;
 	}
+
+	public function getCollections() {
+		$opt = $this->getDefaultOptions();
+		$opt['itemsPerPage'] = 10000;
+		$req = $this->getUrl("collections", $opt);
+		$json = $this->getResponseJson($req);
+		$collections = kbCollection::getCollections($json['entries']);
+		return $collections;
+	}
+
 }

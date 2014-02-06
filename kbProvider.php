@@ -1,15 +1,19 @@
 <?php
-class kbProvider {
+class kbProvider extends kbData {
 	public $uid;
 	public $name;
+	public $available_collections;
+	public $selected_collections;
+	public $available_entries;
+	public $selected_entries;
 	
 	public function __construct($json_entry) {
-		$this->uid = $json_entry['kb:provider_uid'];
-		$this->name = $json_entry['kb:provider_name'];
-		$this->available_collections = $json_entry['kb:available_collections'];
-		$this->selected_collections = $json_entry['kb:selected_collections'];
-		$this->available_entries = $json_entry['kb:available_entries'];
-		$this->selected_entries = $json_entry['kb:selected_entries'];
+		$this->uid = $this->getJson($json_entry,'kb:provider_uid');
+		$this->name = $this->getJson($json_entry,'kb:provider_name');
+		$this->available_collections = $this->getJson($json_entry,'kb:available_collections');
+		$this->selected_collections = $this->getJson($json_entry,'kb:selected_collections');
+		$this->available_entries = $this->getJson($json_entry,'kb:available_entries');
+		$this->selected_entries = $this->getJson($json_entry,'kb:selected_entries');
 	}
 	
 	public static function getProviders($json_entries) {

@@ -11,6 +11,7 @@ class service {
 		$this->wskey = $this->config['wskey'];
 	}
 	
+	public function getInstId() {return $this->inst_id;}
 	public $baseUrl = "http://worldcat.org/webservices/";
 	public $service = "dummy/rest/";
 	public function getUrl($func, $opt = null) {
