@@ -28,10 +28,16 @@ class service {
 	public function getDefaultOptions() {
 		return array(
 		  "alt" => "json",
+		  "institution_id" => $this->inst_id,
 		  "wskey" => $this->wskey
 		);
 	}
 	
+	public function getResponseRaw($req) {
+		$ret = file_get_contents($req);
+		return $ret;
+	}
+
 	public function getResponseJson($req) {
 		$ret = file_get_contents($req);
 		return json_decode($ret, true);

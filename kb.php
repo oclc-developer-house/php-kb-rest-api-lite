@@ -1,5 +1,6 @@
 <?php
 include 'service.php';
+include 'kbProvider.php';
 
 class kbService extends service {
 	public function __construct($configFile) {
@@ -20,5 +21,12 @@ class kbService extends service {
         return $settings;
 	}
 	
-	
+	public function getProviders() {
+		$opt = $this->getDefaultOptions();
+		$opt['itemsPerPage'] = 10000;
+		$req = $this->getUrl("providers");
+		$json = $this->getResponseJson($req);
+		$providers = kbProvider::getProviders($json['entries']);
+		return $providers;
+	}
 }
