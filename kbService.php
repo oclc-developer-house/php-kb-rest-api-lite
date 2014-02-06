@@ -1,6 +1,8 @@
 <?php
 include 'service.php';
 include 'kbData.php';
+include 'kbPager.php';
+include 'kbResult.php';
 include 'kbEntry.php';
 include 'kbProvider.php';
 include 'kbCollection.php';
@@ -24,30 +26,30 @@ class kbService extends service {
         return $settings;
 	}
 	
-	public function getProviders() {
+	public function getProviders($ipp) {
 		$opt = $this->getDefaultOptions();
-		$opt['itemsPerPage'] = 10000;
+		$opt['itemsPerPage'] = $ipp;
 		$req = $this->getUrl("providers", $opt);
 		$json = $this->getResponseJson($req);
 		$providers = kbProvider::getProviders($json['entries']);
-		return $providers;
+		return new kbResult($json, $providers);
 	}
 
-	public function getCollections() {
+	public function getCollections($ipp) {
 		$opt = $this->getDefaultOptions();
-		$opt['itemsPerPage'] = 10000;
+		$opt['itemsPerPage'] = $ipp;
 		$req = $this->getUrl("collections", $opt);
 		$json = $this->getResponseJson($req);
 		$collections = kbCollection::getCollections($json['entries']);
-		return $collections;
+		return new kbResult($json, $collections);
 	}
 
-	public function getEntries() {
+	public function getEntries($ipp) {
 		$opt = $this->getDefaultOptions();
-		$opt['itemsPerPage'] = 10000;
+		$opt['itemsPerPage'] = $ipp;
 		$req = $this->getUrl("entries", $opt);
 		$json = $this->getResponseJson($req);
 		$entries = kbEntry::getEntries($json['entries']);
-		return $entries;
+		return new kbResult($json, $entries);
 	}
 }

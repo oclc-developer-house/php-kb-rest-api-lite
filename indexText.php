@@ -1,5 +1,5 @@
 <?php
-  include 'kb.php';
+  include 'kbService.php';
   include 'widget.php';
   header('Content-type: application/json');
   $kbService = new kbService("mykey.txt");

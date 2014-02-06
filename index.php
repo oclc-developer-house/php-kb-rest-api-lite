@@ -1,5 +1,5 @@
 <?php
-  include 'kb.php';
+  include 'kbService.php';
   include 'widget.php';
 ?>
 <html>
@@ -26,17 +26,20 @@
       echo "<h2>KB Settings for {$kbService->getInstId()}</h2>";
       echo widget::getSettingsAsTable($settings);  		
   	} else if ($mode == 'providers') {
-      $providers = $kbService->getProviders();
+      $providers = $kbService->getProviders(50);
       echo "<h2>KB Providers for {$kbService->getInstId()}</h2>";
-      echo widget::getDataTable(kbProvider::getTableHeader(), $providers);  		
+      echo $providers->pager->getPaginationSummary("Providers");
+      echo widget::getDataTable(kbProvider::getTableHeader(), $providers->data);  		
   	} else if ($mode == 'collections') {
-      $collections = $kbService->getCollections();
+      $collections = $kbService->getCollections(50);
       echo "<h2>KB Collections for {$kbService->getInstId()}</h2>";
-      echo widget::getDataTable(kbCollection::getTableHeader(), $collections);
+      echo $collections->pager->getPaginationSummary("Collections");
+      echo widget::getDataTable(kbCollection::getTableHeader(), $collections->data);
   	} else if ($mode == 'entries') {
-      $entries = $kbService->getEntries();
+      $entries = $kbService->getEntries(50);
       echo "<h2>KB Entries for {$kbService->getInstId()}</h2>";
-      echo widget::getDataTable(kbEntry::getTableHeader(), $entries);  		
+      echo $entries->pager->getPaginationSummary("Entries");
+      echo widget::getDataTable(kbEntry::getTableHeader(), $entries->data);  		
   	}
   }
 
