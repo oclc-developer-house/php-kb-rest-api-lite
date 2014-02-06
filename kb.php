@@ -1,6 +1,7 @@
 <?php
 include 'service.php';
 include 'kbData.php';
+include 'kbEntry.php';
 include 'kbProvider.php';
 include 'kbCollection.php';
 
@@ -41,4 +42,12 @@ class kbService extends service {
 		return $collections;
 	}
 
+	public function getEntries() {
+		$opt = $this->getDefaultOptions();
+		$opt['itemsPerPage'] = 10000;
+		$req = $this->getUrl("entries", $opt);
+		$json = $this->getResponseJson($req);
+		$entries = kbEntry::getEntries($json['entries']);
+		return $entries;
+	}
 }
