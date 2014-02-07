@@ -17,14 +17,21 @@ class service {
 	public function getUrl($func, $opt = null) {
 		if ($opt == null) $opt = $this->getDefaultOptions();
 		$url = $this->baseUrl . $this->service . $func;
+		$url .= service::makeQuery($opt);
+		return $url;
+	} 
+	
+	public static function makeQuery($opt) {
+		$q = "";
 		if (count($opt) > 0) {
-	      $url .= "?";
+	      $q .= "?";
 		  foreach($opt as $k => $v) {
-			$url .= $k . "=" . $v . "&";
+			$q .= $k . "=" . $v . "&";
 		  } 	
 		}
-		return $url; 
-	} 
+		return $q; 
+		
+	}
 	
 	public function getDefaultOptions() {
 		return array(

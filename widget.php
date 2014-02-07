@@ -22,8 +22,14 @@ HERE;
 		echo "</tr>";
         foreach($data as $row) {
         	echo "<tr>";
+        	$first = true;
         	foreach($row->getTableValues() as $col) {
-        		echo "<td>{$col}</td>";
+        		if ($first) {
+        			$first = false;
+        		    echo "<th>{$col}</th>";
+        		} else {
+        		    echo "<td>{$col}</td>";
+        		}
         	}
         	echo "</tr>";
         }

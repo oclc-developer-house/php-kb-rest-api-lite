@@ -26,30 +26,30 @@ class kbService extends service {
         return $settings;
 	}
 	
-	public function getProviders($ipp) {
-		$opt = $this->getDefaultOptions();
-		$opt['itemsPerPage'] = $ipp;
-		$req = $this->getUrl("providers", $opt);
+	public function getProviders($opt, $pageOpt) {
+		$func = "providers";
+		$opt = array_merge($this->getDefaultOptions(), $opt);
+		$req = $this->getUrl($func, $opt);
 		$json = $this->getResponseJson($req);
 		$providers = kbProvider::getProviders($json['entries']);
-		return new kbResult($json, $providers);
+		return new kbResult($json, $providers, $pageOpt);
 	}
 
-	public function getCollections($ipp) {
-		$opt = $this->getDefaultOptions();
-		$opt['itemsPerPage'] = $ipp;
-		$req = $this->getUrl("collections", $opt);
+	public function getCollections($opt, $pageOpt) {
+		$func = "collections";
+		$opt = array_merge($this->getDefaultOptions(), $opt);
+		$req = $this->getUrl($func, $opt);
 		$json = $this->getResponseJson($req);
 		$collections = kbCollection::getCollections($json['entries']);
-		return new kbResult($json, $collections);
+		return new kbResult($json, $collections, $pageOpt);
 	}
 
-	public function getEntries($ipp) {
-		$opt = $this->getDefaultOptions();
-		$opt['itemsPerPage'] = $ipp;
-		$req = $this->getUrl("entries", $opt);
+	public function getEntries($opt, $pageOpt) {
+		$func = "entries";
+		$opt = array_merge($this->getDefaultOptions(), $opt);
+		$req = $this->getUrl($func, $opt);
 		$json = $this->getResponseJson($req);
 		$entries = kbEntry::getEntries($json['entries']);
-		return new kbResult($json, $entries);
+		return new kbResult($json, $entries, $pageOpt);
 	}
 }

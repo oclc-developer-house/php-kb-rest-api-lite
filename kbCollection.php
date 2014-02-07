@@ -1,5 +1,6 @@
 <?php
 class kbCollection extends kbData {
+	public $title;
 	public $provider_uid;
 	public $provider_name;
 	public $collection_uid;
@@ -20,6 +21,7 @@ class kbCollection extends kbData {
 	public $localstem;
 	
 	public function __construct($json_entry) {
+	   $this->title = $this->getJson($json_entry, 'title');
 	   $this->provider_uid = $this->getJson($json_entry, 'kb:provider_uid');
 	   $this->provider_name = $this->getJson($json_entry, 'kb:provider_name');
 	   $this->collection_uid = $this->getJson($json_entry, 'kb:collection_uid');
@@ -51,47 +53,49 @@ class kbCollection extends kbData {
 	
 	public static function getTableHeader() {
 		return array(
+          "Title",
           "Provider UID",
           "Provider Name",
           "Collection UID",
-          "Owner Institution",
-          "Source Institution",
-          "Collection Status",
-          "Collection Type",
-          "Title Link Template",
-          "Link Scheme",
-          "UHF Version",
-          "WCSYNC enabled",
-          "MARC Delivery Enabled",
-          "MARC Delivery No Delete",
-          "Google Scholar Enabled",
-          "Open",
+          //"Owner Institution",
+          //"Source Institution",
+          //"Collection Status",
+          //"Collection Type",
+          //"Title Link Template",
+          //"Link Scheme",
+          //"UHF Version",
+          //"WCSYNC enabled",
+          //"MARC Delivery Enabled",
+          //"MARC Delivery No Delete",
+          //"Google Scholar Enabled",
+          //"Open",
           "Available Entries",
           "Selected Entries",
-          "Local Stem",
+          //"Local Stem",
        );
 	}
 
 	public function getTableValues() {
 		return array(
+	      $this->title,
 	      $this->provider_uid,
 	      $this->provider_name,
 	      $this->collection_uid,
-	      $this->owner_institution,
-	      $this->source_institution,
-	      $this->collection_status,
-	      $this->collection_type,
-	      $this->title_link_template,
-	      $this->linkscheme,
-	      $this->uhf_version,
-	      $this->wcsync_enabled,
-	      $this->marcdelivery_enabled,
-	      $this->marcdelivery_no_delete,
-	      $this->google_scholar_enabled,
-	      $this->open,
+	      //$this->owner_institution,
+	      //$this->source_institution,
+	      //$this->collection_status,
+	      //$this->collection_type,
+	      //$this->title_link_template,
+	      //$this->linkscheme,
+	      //$this->uhf_version,
+	      //$this->wcsync_enabled,
+	      //$this->marcdelivery_enabled,
+	      //$this->marcdelivery_no_delete,
+	      //$this->google_scholar_enabled,
+	      //$this->open,
 	      $this->available_entries,
 	      $this->selected_entries,
-	      $this->localstem,
+	      //$this->localstem,
 		);
 	}
 
