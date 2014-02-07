@@ -6,4 +6,9 @@ class oclcData {
 		return $default;
 	}
 	
+	public function getVal($key) {
+		$arr = get_object_vars($this);
+		return $arr[$key];
+	}
+	
 }

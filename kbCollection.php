@@ -53,50 +53,83 @@ class kbCollection extends oclcData {
 	
 	public static function getTableHeader() {
 		return array(
-          "Title",
-          "Provider UID",
-          "Provider Name",
-          "Collection UID",
-          //"Owner Institution",
-          //"Source Institution",
-          //"Collection Status",
-          //"Collection Type",
-          //"Title Link Template",
-          //"Link Scheme",
-          //"UHF Version",
-          //"WCSYNC enabled",
-          //"MARC Delivery Enabled",
-          //"MARC Delivery No Delete",
-          //"Google Scholar Enabled",
-          //"Open",
-          "Available Entries",
-          "Selected Entries",
-          //"Local Stem",
-       );
-	}
-
-	public function getTableValues() {
-		return array(
-	      $this->title,
-	      $this->provider_uid,
-	      $this->provider_name,
-	      $this->collection_uid,
-	      //$this->owner_institution,
-	      //$this->source_institution,
-	      //$this->collection_status,
-	      //$this->collection_type,
-	      //$this->title_link_template,
-	      //$this->linkscheme,
-	      //$this->uhf_version,
-	      //$this->wcsync_enabled,
-	      //$this->marcdelivery_enabled,
-	      //$this->marcdelivery_no_delete,
-	      //$this->google_scholar_enabled,
-	      //$this->open,
-	      $this->available_entries,
-	      $this->selected_entries,
-	      //$this->localstem,
-		);
+		    "title" => array(
+		        "name" => "Collection Title",
+		        "summaryView" => true,
+		    ),
+		    "provider_uid" => array(
+		        "name" => "Provider UID",
+		        "summaryView" => true,
+		    ),
+		    "provider_name" => array(
+		        "name" => "Provider Name",
+		        "summaryView" => true,
+		    ),
+		    "collection_uid" => array(
+		        "name" => "Collection UID",
+		        "summaryView" => true,
+		    ),
+	        "owner_institution" => array(
+                "name" => "Owner Institution", 
+                "summaryView" => false
+            ),
+	        "source_institution" => array(
+                "name" => "Source Institution", 
+                "summaryView" => false
+            ),
+	        "collection_status" => array(
+                "name" => "Collection Status", 
+                "summaryView" => false
+            ),
+	        "collection_type" => array(
+                "name" => "Collection Type", 
+                "summaryView" => false
+            ),
+	        "title_link_template" => array(
+                "name" => "Title Link Template", 
+                "summaryView" => false
+            ),
+	        "linkscheme" => array(
+                "name" => "Link Scheme", 
+                "summaryView" => false
+            ),
+	        "uhf_version" => array(
+                "name" => "UHF Version", 
+                "summaryView" => false
+            ),
+	        "wcsync_enabled" => array(
+                "name" => "WCSYNC Enabled", 
+                "summaryView" => false
+            ),
+	        "marcdelivery_enabled" => array(
+                "name" => "Marc Delivery Enabled", 
+                "summaryView" => false
+            ),
+	        "marcdelivery_no_delete" => array(
+                "name" => "Marc Delivery No Delete", 
+                "summaryView" => false
+            ),
+	        "google_scholar_enabled" => array(
+                "name" => "Google Scholar Enabled", 
+                "summaryView" => false
+            ),
+	        "open" => array(
+                "name" => "Open", 
+                "summaryView" => false
+            ),
+	        "available_entries" => array(
+                "name" => "Available Entries", 
+                "summaryView" => true
+            ),
+	        "selected_entries" => array(
+                "name" => "Selected Entries", 
+                "summaryView" => true
+            ),
+	        "localstem" => array(
+                "name" => "Local Stem", 
+                "summaryView" => false
+            ),
+        ); 
 	}
 
 }

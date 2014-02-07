@@ -61,19 +61,34 @@ HERE;
 HERE;
 	}
 	
+	public static function getDetailTable($header, $dataObj) {
+		echo "<table><tr><th>Property</th><th>Value</th></tr>";
+		foreach($header as $colname => $col) {
+			echo "<tr><th>{$col['name']}</th><td>";
+			echo $dataObj->getVal($colname);
+			echo "</td></tr>";	
+		}
+		echo "</table>";
+	}
+
 	public static function getDataTable($header, $data) {
 		echo "<table><tr>";
-		foreach($header as $v) echo "<th>{$v}</th>";
+		foreach($header as $col) {
+       		if (!$col['summaryView']) continue;
+			echo "<th>{$col['name']}</th>";	
+		}
 		echo "</tr>";
         foreach($data as $row) {
         	echo "<tr>";
         	$first = true;
-        	foreach($row->getTableValues() as $col) {
+        	foreach($header as $colname => $col) {
+        		if (!$col['summaryView']) continue;
+        		$val = $row->getVal($colname);
         		if ($first) {
         			$first = false;
-        		    echo "<th>{$col}</th>";
+        		    echo "<th>{$val}</th>";
         		} else {
-        		    echo "<td>{$col}</td>";
+        		    echo "<td>{$val}</td>";
         		}
         	}
         	echo "</tr>";
