@@ -1,8 +1,8 @@
 <?php
-include 'service.php';
-include 'kbData.php';
-include 'kbPager.php';
-include 'kbResult.php';
+include 'oclcService.php';
+include 'oclcData.php';
+include 'oclcPager.php';
+include 'oclcResult.php';
 include 'kbEntry.php';
 include 'kbProvider.php';
 include 'kbCollection.php';
