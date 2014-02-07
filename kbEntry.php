@@ -1,5 +1,5 @@
 <?php
-class kbEntry extends kbData {
+class kbEntry extends oclcData {
     public $entry_uid;
     public $entry_status;
     public $bkey;

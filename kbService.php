@@ -32,7 +32,7 @@ class kbService extends service {
 		$req = $this->getUrl($func, $opt);
 		$json = $this->getResponseJson($req);
 		$providers = kbProvider::getProviders($json['entries']);
-		return new kbResult($json, $providers, $pageOpt);
+		return new oclcResult($json, $providers, $pageOpt);
 	}
 
 	public function getCollections($opt, $pageOpt) {
@@ -41,7 +41,7 @@ class kbService extends service {
 		$req = $this->getUrl($func, $opt);
 		$json = $this->getResponseJson($req);
 		$collections = kbCollection::getCollections($json['entries']);
-		return new kbResult($json, $collections, $pageOpt);
+		return new oclcResult($json, $collections, $pageOpt);
 	}
 
 	public function getEntries($opt, $pageOpt) {
@@ -50,6 +50,6 @@ class kbService extends service {
 		$req = $this->getUrl($func, $opt);
 		$json = $this->getResponseJson($req);
 		$entries = kbEntry::getEntries($json['entries']);
-		return new kbResult($json, $entries, $pageOpt);
+		return new oclcResult($json, $entries, $pageOpt);
 	}
 }

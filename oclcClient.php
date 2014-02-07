@@ -32,6 +32,19 @@ class oclcClient {
 		echo "<div><a href='{$this->page}'>Home</a></div>";
 	}
 	
+	public function getPaginationSummary($result, $title) {
+		$this->writeLink($result->getPaginationUrl($result->pager->firstPageIndex), "<<");
+		$this->writeLink($result->getPaginationUrl($result->pager->prevPageIndex), "<");
+		$result->pager->getPaginationSummary($title);
+		$this->writeLink($result->getPaginationUrl($result->pager->nextPageIndex), ">");
+		$this->writeLink($result->getPaginationUrl($result->pager->lastPageIndex), ">>");
+	}
+	
+	public function writeLink($url, $label) {
+		if ($url == null) return;
+		echo "<a href='{$url}'>{$label}</a> ";
+	}
+	
 	public static function getSettingsAsTable($settings) {
 		echo <<< HERE
 <table>

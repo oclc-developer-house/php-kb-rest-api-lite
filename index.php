@@ -66,19 +66,19 @@ $(document).ready(function(){
       $providers = $kbService->getProviders($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Providers for {$kbService->getInstId()}</h2>";
-      echo $providers->pager->getPaginationSummary("Providers");
+      echo $oclcClient->getPaginationSummary($providers, "Providers");
       echo $oclcClient->getDataTable(kbProvider::getTableHeader(), $providers->data);  		
   	} else if ($mode == 'collections') {
       $collections = $kbService->getCollections($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Collections for {$kbService->getInstId()}</h2>";
-      echo $collections->pager->getPaginationSummary("Collections");
+      echo $oclcClient->getPaginationSummary($collections, "Collections");
       echo $oclcClient->getDataTable(kbCollection::getTableHeader(), $collections->data);
   	} else if ($mode == 'entries') {
       $entries = $kbService->getEntries($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Entries for {$kbService->getInstId()}</h2>";
-      echo $entries->pager->getPaginationSummary("Entries");
+      echo $oclcClient->getPaginationSummary($entries, "Entries");
       echo $oclcClient->getDataTable(kbEntry::getTableHeader(), $entries->data);  		
   	}
   }

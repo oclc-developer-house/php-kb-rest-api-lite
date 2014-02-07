@@ -1,5 +1,5 @@
 <?php
-class kbResult {
+class oclcResult {
 	public $pager;
 	public $data;
 	public $opt;
@@ -7,15 +7,16 @@ class kbResult {
 	public function __construct($json, $data, $opt) {
 		$this->data = $data;
 		$this->opt = $opt;
-		$this->pager = new kbPager($json, $this);
+		$this->pager = new oclcPager($json);
 	}
 
-	public function writeLink($index, $label) {
+	public function getPaginationUrl($index) {
+		if ($index == null) return null;
 		$opt = array_merge($this->opt);
 		$opt['startIndex'] = $index;
 		$url = $this->opt['page'];
 		$url .= service::makeQuery($opt);
-		echo "<a href='{$url}'>{$label}</a> ";
+		return $url;
 	}
 	
 }

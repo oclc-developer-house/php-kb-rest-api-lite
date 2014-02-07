@@ -1,5 +1,5 @@
 <?php
-class kbCollection extends kbData {
+class kbCollection extends oclcData {
 	public $title;
 	public $provider_uid;
 	public $provider_name;

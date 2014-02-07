@@ -1,34 +1,29 @@
 <?php
-class kbPager extends kbData {
+class oclcPager extends oclcData {
 	public $total;
 	public $start;
 	public $page_size;
 	public $result_size;
-	private $result;
+	public $lastItem;
+	public $firstPageIndex;
+	public $prevPageIndex;
+	public $nextPageIndex;
+	public $lastPageIndex;
 	
-	public function __construct($json_entry, $result) {
+	public function __construct($json_entry) {
 	   $this->total = $this->getJson($json_entry, 'os:totalResults');
 	   $this->start = $this->getJson($json_entry, 'os:startIndex');
 	   $this->page_size = $this->getJson($json_entry, 'os:itemsPerPage');
 	   $this->result_size = count($json_entry['entries']);
-	   $this->result = $result;
+	   $this->lastItem = $this->start + $this->result_size - 1;
+	   $this->firstPageIndex = ($this->start > $this->result_size + 1) ? 1 : null;
+	   $this->prevPageIndex  = ($this->start > 1) ? max(1,$this->start - $this->result_size) : null;
+	   $this->nextPageIndex  = ($this->lastItem < $this->total) ? $this->start + $this->result_size : null;
+	   $this->lastPageIndex  = ($this->lastItem < $this->total - $this->page_size) ? $this->total + 1 - $this->result_size : null;
 	}
 	
 	public function getPaginationSummary($title) {
-		$end = $this->start + $this->result_size - 1;
-		if ($this->start > 1) {
-		  $this->result->writeLink(1,"<<");	
-		}
-		if ($this->start > 1 + $this->page_size) {
-		  $this->result->writeLink($this->start - $this->page_size,"<");
-		}
-		echo "{$this->start} - {$end} of {$this->total} {$title} ";
-		if ($this->start + $this->page_size < $this->total - $this->page_size) {
-		  $this->result->writeLink($this->start + $this->page_size,">");	
-		}
-		if ($this->start + $this->page_size < $this->total) {
-		  $this->result->writeLink($this->total + 1 - $this->page_size,">>");	
-		}
+		echo "{$this->start} - {$this->lastItem} of {$this->total} {$title} ";
 	}
 	
 }
