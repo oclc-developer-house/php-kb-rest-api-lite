@@ -63,7 +63,7 @@ class kbEntry extends oclcData {
 
 	public function getLinkOptions($key) {
 		if ($key == "entry_uid") {
-			return array("mode" => "entryUid", "uid" => $this->entry_uid);
+			return array("mode" => "entryUid", "uid" => "{$this->collection_uid},{$this->entry_uid}");
 		}
 		if ($key == "collection_name") {
 			return array("mode" => "collectionUid", "uid" => $this->collection_uid);
