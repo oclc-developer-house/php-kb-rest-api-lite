@@ -40,6 +40,8 @@ $(document).ready(function(){
         <option value="collections">Collections</option>
         <option value="entries">Entries</option>
         <option value="providerUid">Provider By UID</option>
+        <option value="collectionUid">Collection By UID</option>
+        <option value="entryUid">Entry By UID</option>
       </select>
     </div>
     <div class="opt providers collections entries">
@@ -50,7 +52,7 @@ $(document).ready(function(){
       <label for="startIndex">Start Index</label>
       <input id="startIndex" type="number" name="startIndex" min="1" max="1000000" value="1" />
     </div>
-    <div class="opt providerUid">
+    <div class="opt providerUid collectionUid">
       <label for="uid">UID</label>
       <input id="uid" type="text" name="uid"/>
     </div>
@@ -83,12 +85,20 @@ $(document).ready(function(){
       echo "<h2>KB Collections for {$kbService->getInstId()}</h2>";
       echo $oclcClient->getPaginationSummary($collections, "Collections");
       echo $oclcClient->getTable($collections);
+  	} else if ($mode == 'collectionUid') {
+      $uid = $oclcClient->getKey('uid');
+      $collection = $kbService->getCollectionByUid($uid, $oclcClient->serviceOpt, $oclcClient->pageOpt);
+      echo $oclcClient->getTable($collection);		
   	} else if ($mode == 'entries') {
       $entries = $kbService->getEntries($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Entries for {$kbService->getInstId()}</h2>";
       echo $oclcClient->getPaginationSummary($entries, "Entries");
       echo $oclcClient->getDataTable($entries);  		
+  	} else if ($mode == 'entryUid') {
+      $uid = $oclcClient->getKey('uid');
+      $entry = $kbService->getEntryByUid($uid, $oclcClient->serviceOpt, $oclcClient->pageOpt);
+      echo $oclcClient->getTable($entry);		
   	}
   }
 

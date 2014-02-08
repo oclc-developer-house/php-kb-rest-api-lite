@@ -11,7 +11,7 @@ class oclcData {
 		return $arr[$key];
 	}
 	
-	public function getLinkUrl($key) {
+	public function getLinkOptions($key) {
 		return array();
 	}
 	

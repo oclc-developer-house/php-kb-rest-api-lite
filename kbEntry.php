@@ -48,7 +48,7 @@ class kbEntry extends oclcData {
             new oclcDataAttr("collection_uid", "Collection UID"),
             new oclcDataAttr("collection_name", "Collection Name", true),
             new oclcDataAttr("provider_uid", "Provider UID"),
-            new oclcDataAttr("provider_name", "Provider Name"),
+            new oclcDataAttr("provider_name", "Provider Name", true),
             new oclcDataAttr("oclcnum", "OCLC number", true),
             new oclcDataAttr("isbn", "ISBN", true),
             new oclcDataAttr("publisher", "Publisher", true),
@@ -57,6 +57,18 @@ class kbEntry extends oclcData {
        );
 	}
 
+	public function getLinkOptions($key) {
+		if ($key == "entry_uid") {
+			return array("mode" => "entryUid", "uid" => $this->entry_uid);
+		}
+		if ($key == "collection_name") {
+			return array("mode" => "collectionUid", "uid" => $this->collection_uid);
+		}
+		if ($key == "provider_name") {
+			return array("mode" => "providerUid", "uid" => $this->provider_uid);
+		}
+		return array();
+	}
 }
 
 ?>

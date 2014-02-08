@@ -49,6 +49,15 @@ class kbService extends oclcService {
 		return new oclcResult($json, $collections, $pageOpt, kbCollection::getTableHeader());
 	}
 
+	public function getCollectionByUid($uid, $opt, $pageOpt) {
+		$func = "collections/{$uid}";
+		$opt = array_merge($this->getDefaultOptions(), $opt);
+		$req = $this->getUrl($func, $opt);
+		$json = $this->getResponseJson($req);
+		$collection = new kbCollection($json);
+		return new oclcResult($json, $collection, $pageOpt, kbCollection::getTableHeader());
+	}
+
 	public function getEntries($opt, $pageOpt) {
 		$func = "entries";
 		$opt = array_merge($this->getDefaultOptions(), $opt);
@@ -57,4 +66,14 @@ class kbService extends oclcService {
 		$entries = kbEntry::getEntries($json['entries']);
 		return new oclcResult($json, $entries, $pageOpt, kbEntry::getTableHeader());
 	}
+
+	public function getEntryByUid($uid, $opt, $pageOpt) {
+		$func = "entries/{$uid}";
+		$opt = array_merge($this->getDefaultOptions(), $opt);
+		$req = $this->getUrl($func, $opt);
+		$json = $this->getResponseJson($req);
+		$entry = new kbEntry($json);
+		return new oclcResult($json, $entry, $pageOpt, kbEntry::getTableHeader());
+	}
+
 }

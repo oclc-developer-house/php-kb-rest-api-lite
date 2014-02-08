@@ -57,9 +57,15 @@ class oclcClient {
 
 	public function getDetailTable($result) {
 		echo "<table><tr><th>Property</th><th>Value</th></tr>";
+		$row = $result->data;
 		foreach($result->header as $col) {
 			echo "<tr><th>{$col->name}</th><td>";
-			echo $result->data->getVal($col->id);
+        	$val = $row->getVal($col->id);
+        	$link = $row->getLinkOptions($col->id);
+        	$url = $this->page . oclcService::makeQuery($link);
+       		if (count($link) > 0) echo "<a href='{$url}'>";
+       		echo $val;
+       		if (count($link) > 0) echo "</a>";
 			echo "</td></tr>";	
 		}
 		echo "</table>";

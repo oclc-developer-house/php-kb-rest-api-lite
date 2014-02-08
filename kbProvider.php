@@ -40,6 +40,12 @@ class kbProvider extends oclcData {
 		if ($key == "uid") {
 			return array("mode" => "providerUid", "uid" => $this->uid);
 		}
+		if ($key == "selected_collections") {
+			return array("mode" => "collections", "provider_uid" => $this->uid);
+		}
+		if ($key == "selected_entries") {
+			return array("mode" => "entries", "provider_uid" => $this->uid);
+		}
 		return array();
 	}
 	

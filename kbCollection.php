@@ -75,6 +75,19 @@ class kbCollection extends oclcData {
         ); 
 	}
 
+	public function getLinkOptions($key) {
+		if ($key == "collection_uid") {
+			return array("mode" => "collectionUid", "uid" => $this->collection_uid);
+		}
+		if ($key == "provider_name") {
+			return array("mode" => "providerUid", "uid" => $this->provider_uid);
+		}
+		if ($key == "selected_entries") {
+			return array("mode" => "entries", "collection_uid" => $this->collection_uid);
+		}
+		return array();
+	}
+
 }
 
 ?>
