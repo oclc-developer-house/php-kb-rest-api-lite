@@ -12,6 +12,7 @@ class oclcPager extends oclcData {
 	
 	public function __construct($json_entry) {
 	   $this->total = $this->getJson($json_entry, 'os:totalResults');
+	   if ($this->total == "") return;
 	   $this->start = $this->getJson($json_entry, 'os:startIndex');
 	   $this->page_size = $this->getJson($json_entry, 'os:itemsPerPage');
 	   $this->result_size = count($json_entry['entries']);
@@ -23,7 +24,8 @@ class oclcPager extends oclcData {
 	}
 	
 	public function getPaginationSummary($title) {
-		echo "{$this->start} - {$this->lastItem} of {$this->total} {$title} ";
+	   if ($this->total == "") return;
+	   echo "{$this->start} - {$this->lastItem} of {$this->total} {$title} ";
 	}
 	
 }

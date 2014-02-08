@@ -11,4 +11,20 @@ class oclcData {
 		return $arr[$key];
 	}
 	
+	public function getLinkUrl($key) {
+		return array();
+	}
+	
+}
+
+class oclcDataAttr {
+	public $id;
+	public $name;
+	public $summaryView;
+	
+	public function __construct($id, $name, $summaryView = false) {
+		$this->id = $id;
+		$this->name = $name;
+		$this->summaryView = $summaryView;
+	}
 }

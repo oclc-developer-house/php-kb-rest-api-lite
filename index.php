@@ -39,6 +39,7 @@ $(document).ready(function(){
         <option value="providers">Providers</option>
         <option value="collections">Collections</option>
         <option value="entries">Entries</option>
+        <option value="providerUid">Provider By UID</option>
       </select>
     </div>
     <div class="opt providers collections entries">
@@ -47,7 +48,11 @@ $(document).ready(function(){
     </div>
     <div class="opt providers collections entries">
       <label for="startIndex">Start Index</label>
-      <input id="startIndex" class="opt providers collections entries" type="number" name="startIndex" min="1" max="1000000" value="1" />
+      <input id="startIndex" type="number" name="startIndex" min="1" max="1000000" value="1" />
+    </div>
+    <div class="opt providerUid">
+      <label for="uid">UID</label>
+      <input id="uid" type="text" name="uid"/>
     </div>
     <input type="submit"/>
   </form>
@@ -58,28 +63,32 @@ $(document).ready(function(){
   	$oclcClient->writeHomeLink();
   	
   	if ($mode == 'settings') {
-      $settings = $kbService->getSettings();
+      $settings = $kbService->getSettings($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Settings for {$kbService->getInstId()}</h2>";
-      echo $oclcClient->getSettingsAsTable($settings);  		
+      echo $oclcClient->getTable($settings);  		
   	} else if ($mode == 'providers') {
       $providers = $kbService->getProviders($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Providers for {$kbService->getInstId()}</h2>";
       echo $oclcClient->getPaginationSummary($providers, "Providers");
-      echo $oclcClient->getDataTable(kbProvider::getTableHeader(), $providers->data);  		
+      echo $oclcClient->getTable($providers);		
+  	} else if ($mode == 'providerUid') {
+      $uid = $oclcClient->getKey('uid');
+      $provider = $kbService->getProviderByUid($uid, $oclcClient->serviceOpt, $oclcClient->pageOpt);
+      echo $oclcClient->getTable($provider);		
   	} else if ($mode == 'collections') {
       $collections = $kbService->getCollections($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Collections for {$kbService->getInstId()}</h2>";
       echo $oclcClient->getPaginationSummary($collections, "Collections");
-      echo $oclcClient->getDataTable(kbCollection::getTableHeader(), $collections->data);
+      echo $oclcClient->getTable($collections);
   	} else if ($mode == 'entries') {
       $entries = $kbService->getEntries($oclcClient->serviceOpt, $oclcClient->pageOpt);
       
       echo "<h2>KB Entries for {$kbService->getInstId()}</h2>";
       echo $oclcClient->getPaginationSummary($entries, "Entries");
-      echo $oclcClient->getDataTable(kbEntry::getTableHeader(), $entries->data);  		
+      echo $oclcClient->getDataTable($entries);  		
   	}
   }
 

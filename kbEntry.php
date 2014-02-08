@@ -41,19 +41,19 @@ class kbEntry extends oclcData {
 	
 	public static function getTableHeader() {
 		return array(
-            "title" => array("name" => "Title", "summaryView" => true),
-            "entry_uid" => array("name" => "Entry UID", "summaryView" => true),
-            "entry_status" => array("name" => "Entry Status", "summaryView" => false),
-            "bkey" => array("name" => "BKey", "summaryView" => false),
-            "collection_uid" => array("name" => "Collection UID", "summaryView" => false),
-            "collection_name" => array("name" => "Collection Name", "summaryView" => true),
-            "provider_uid" => array("name" => "Provider UID", "summaryView" => false),
-            "provider_name" => array("name" => "Provider Name", "summaryView" => false),
-            "oclcnum" => array("name" => "OCLC number", "summaryView" => true),
-            "isbn" => array("name" => "ISBN", "summaryView" => true),
-            "publisher" => array("name" => "Publisher", "summaryView" => true),
-            "coverage" => array("name" => "Coverage", "summaryView" => false),
-            "coverage_enum" => array("name" => "Coverage Enum", "summaryView" => false),
+            new oclcDataAttr("title", "Title", true),
+            new oclcDataAttr("entry_uid", "Entry UID", true),
+            new oclcDataAttr("entry_status", "Entry Status"),
+            new oclcDataAttr("bkey", "BKey"),
+            new oclcDataAttr("collection_uid", "Collection UID"),
+            new oclcDataAttr("collection_name", "Collection Name", true),
+            new oclcDataAttr("provider_uid", "Provider UID"),
+            new oclcDataAttr("provider_name", "Provider Name"),
+            new oclcDataAttr("oclcnum", "OCLC number", true),
+            new oclcDataAttr("isbn", "ISBN", true),
+            new oclcDataAttr("publisher", "Publisher", true),
+            new oclcDataAttr("coverage", "Coverage"),
+            new oclcDataAttr("coverage_enum", "Coverage Enum"),
        );
 	}
 

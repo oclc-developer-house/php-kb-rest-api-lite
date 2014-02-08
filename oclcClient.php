@@ -12,6 +12,7 @@ class oclcClient {
   	    foreach($get as $k => $v) {
 	        $this->pageOpt[$k] = $v;
   		    if ($k == "mode") continue;
+  		    if ($k == "uid") continue;
   		    $this->serviceOpt[$k] = $v;
   	    }
 	}
@@ -45,51 +46,47 @@ class oclcClient {
 		echo "<a href='{$url}'>{$label}</a> ";
 	}
 	
-	public static function getSettingsAsTable($settings) {
-		echo <<< HERE
-<table>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-HERE;
-        foreach($settings as $k => $v) {
-        	echo "<tr><th>{$k}</th><td>{$v}</td></tr>";
-        }
-		echo <<< HERE
-</table>
-HERE;
+	public function getTable($result) {
+		if (is_array($result->data)) {
+			$this->getDataTable($result);
+		} else {
+		    $this->getDetailTable($result);	
+		}
 	}
-	
-	public static function getDetailTable($header, $dataObj) {
+
+
+	public function getDetailTable($result) {
 		echo "<table><tr><th>Property</th><th>Value</th></tr>";
-		foreach($header as $colname => $col) {
-			echo "<tr><th>{$col['name']}</th><td>";
-			echo $dataObj->getVal($colname);
+		foreach($result->header as $col) {
+			echo "<tr><th>{$col->name}</th><td>";
+			echo $result->data->getVal($col->id);
 			echo "</td></tr>";	
 		}
 		echo "</table>";
 	}
 
-	public static function getDataTable($header, $data) {
+	public function getDataTable($result) {
 		echo "<table><tr>";
-		foreach($header as $col) {
-       		if (!$col['summaryView']) continue;
-			echo "<th>{$col['name']}</th>";	
+		foreach($result->header as $col) {
+       		if (!$col->summaryView) continue;
+			echo "<th>{$col->name}</th>";	
 		}
 		echo "</tr>";
-        foreach($data as $row) {
+        foreach($result->data as $row) {
         	echo "<tr>";
         	$first = true;
-        	foreach($header as $colname => $col) {
-        		if (!$col['summaryView']) continue;
-        		$val = $row->getVal($colname);
-        		if ($first) {
-        			$first = false;
-        		    echo "<th>{$val}</th>";
-        		} else {
-        		    echo "<td>{$val}</td>";
-        		}
+        	foreach($result->header as $col) {
+        		if (!$col->summaryView) continue;
+        		$val = $row->getVal($col->id);
+        		$tag = ($first) ? "th" : "td";
+        		$link = $row->getLinkOptions($col->id);
+        		$url = $this->page . oclcService::makeQuery($link);
+       		    echo "<{$tag}>";
+       		    if (count($link) > 0) echo "<a href='{$url}'>";
+       		    echo $val;
+       		    if (count($link) > 0) echo "</a>";
+       		    echo "</{$tag}>";
+       			$first = false;
         	}
         	echo "</tr>";
         }

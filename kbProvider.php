@@ -27,33 +27,22 @@ class kbProvider extends oclcData {
 	
 	public static function getTableHeader() {
 		return array(
-		    "uid" => array(
-		        "name" => "Provider UID",
-		        "summaryView" => true,
-		    ),
-		    "name" => array(
-		        "name" => "Provider Name",
-		        "summaryView" => true,
-		    ),
-		    "available_collections" => array(
-		        "name" => "Available Collections",
-		        "summaryView" => true,
-		    ),
-		    "selected_collections" => array(
-		        "name" => "Selected Collections",
-		        "summaryView" => true,
-		    ),
-		    "available_entries" => array(
-		        "name" => "Available Entries",
-		        "summaryView" => true,
-		    ),
-		    "selected_entries" => array(
-		        "name" => "Selected Entries",
-		        "summaryView" => true,
-		    ),
+		    new oclcDataAttr("uid", "Provider UID", true),
+		    new oclcDataAttr("name", "Provider Name", true),
+		    new oclcDataAttr("available_collections", "Available Collections", true),
+		    new oclcDataAttr("selected_collections", "Selected Collections", true),
+		    new oclcDataAttr("available_entries", "Available Entries", true),
+		    new oclcDataAttr("selected_entries", "Selected Entries", true),
         ); 
-
 	}
+	
+	public function getLinkOptions($key) {
+		if ($key == "uid") {
+			return array("mode" => "providerUid", "uid" => $this->uid);
+		}
+		return array();
+	}
+	
 }
 
 ?>

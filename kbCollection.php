@@ -53,82 +53,25 @@ class kbCollection extends oclcData {
 	
 	public static function getTableHeader() {
 		return array(
-		    "title" => array(
-		        "name" => "Collection Title",
-		        "summaryView" => true,
-		    ),
-		    "provider_uid" => array(
-		        "name" => "Provider UID",
-		        "summaryView" => true,
-		    ),
-		    "provider_name" => array(
-		        "name" => "Provider Name",
-		        "summaryView" => true,
-		    ),
-		    "collection_uid" => array(
-		        "name" => "Collection UID",
-		        "summaryView" => true,
-		    ),
-	        "owner_institution" => array(
-                "name" => "Owner Institution", 
-                "summaryView" => false
-            ),
-	        "source_institution" => array(
-                "name" => "Source Institution", 
-                "summaryView" => false
-            ),
-	        "collection_status" => array(
-                "name" => "Collection Status", 
-                "summaryView" => false
-            ),
-	        "collection_type" => array(
-                "name" => "Collection Type", 
-                "summaryView" => false
-            ),
-	        "title_link_template" => array(
-                "name" => "Title Link Template", 
-                "summaryView" => false
-            ),
-	        "linkscheme" => array(
-                "name" => "Link Scheme", 
-                "summaryView" => false
-            ),
-	        "uhf_version" => array(
-                "name" => "UHF Version", 
-                "summaryView" => false
-            ),
-	        "wcsync_enabled" => array(
-                "name" => "WCSYNC Enabled", 
-                "summaryView" => false
-            ),
-	        "marcdelivery_enabled" => array(
-                "name" => "Marc Delivery Enabled", 
-                "summaryView" => false
-            ),
-	        "marcdelivery_no_delete" => array(
-                "name" => "Marc Delivery No Delete", 
-                "summaryView" => false
-            ),
-	        "google_scholar_enabled" => array(
-                "name" => "Google Scholar Enabled", 
-                "summaryView" => false
-            ),
-	        "open" => array(
-                "name" => "Open", 
-                "summaryView" => false
-            ),
-	        "available_entries" => array(
-                "name" => "Available Entries", 
-                "summaryView" => true
-            ),
-	        "selected_entries" => array(
-                "name" => "Selected Entries", 
-                "summaryView" => true
-            ),
-	        "localstem" => array(
-                "name" => "Local Stem", 
-                "summaryView" => false
-            ),
+		    new oclcDataAttr("title", "Collection Title", true),
+		    new oclcDataAttr("provider_uid", "Provider UID", true),
+		    new oclcDataAttr("provider_name", "Provider Name", true),
+		    new oclcDataAttr("collection_uid", "Collection UID", true),
+	        new oclcDataAttr("owner_institution", "Owner Institution"),
+	        new oclcDataAttr("source_institution", "Source Institution"),
+	        new oclcDataAttr("collection_status", "Collection Status"),
+	        new oclcDataAttr("collection_type", "Collection Type"),
+	        new oclcDataAttr("title_link_template", "Title Link Template"),
+	        new oclcDataAttr("linkscheme", "Link Scheme"),
+	        new oclcDataAttr("uhf_version", "UHF Version"),
+	        new oclcDataAttr("wcsync_enabled", "WCSYNC Enabled"),
+	        new oclcDataAttr("marcdelivery_enabled", "Marc Delivery Enabled"),
+	        new oclcDataAttr("marcdelivery_no_delete", "Marc Delivery No Delete"),
+	        new oclcDataAttr("google_scholar_enabled", "Google Scholar Enabled"),
+	        new oclcDataAttr("open", "Open"),
+	        new oclcDataAttr("available_entries", "Available Entries"),
+	        new oclcDataAttr("selected_entries", "Selected Entries", true),
+	        new oclcDataAttr("localstem", "Local Stem"),
         ); 
 	}
 

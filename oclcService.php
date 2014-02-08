@@ -1,6 +1,6 @@
 <?php
 
-class service { 
+class oclcService { 
 	protected $inst_id;
 	protected $wskey;
 	protected $config;
@@ -17,7 +17,7 @@ class service {
 	public function getUrl($func, $opt = null) {
 		if ($opt == null) $opt = $this->getDefaultOptions();
 		$url = $this->baseUrl . $this->service . $func;
-		$url .= service::makeQuery($opt);
+		$url .= oclcService::makeQuery($opt);
 		return $url;
 	} 
 	
