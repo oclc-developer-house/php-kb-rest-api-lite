@@ -31,9 +31,42 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Please see the wiki for usage details.</p>
+        <p>This code was created at the <a href="http://oclc.org/developer/news/time-flies-developer-house">OCLC Developer House</a> to provide a simple PHP interface to the <a href="http://www.oclc.org/developer/services/worldcat-knowledge-base-api">OCLC's WorldCat Knowledge Base API</a>.</p>
 
-<p><a href="https://github.com/oclc-developer-house/php-kb-rest-api-lite/wiki">https://github.com/oclc-developer-house/php-kb-rest-api-lite/wiki</a></p>
+<p>See the <a href="https://github.com/oclc-developer-house/php-kb-rest-api-lite/wiki">API Wiki</a> for usage details.</p>
+
+<h3>
+<a name="pre-requisites" class="anchor" href="#pre-requisites"><span class="octicon octicon-link"></span></a>Pre-requisites</h3>
+
+<p>Create your own configuration file <em>mykey.txt</em></p>
+
+<pre><code>wskey = xxxx
+inst_id = 123456
+</code></pre>
+
+<h3>
+<a name="sample-application-to-display-knowledge-base-providers" class="anchor" href="#sample-application-to-display-knowledge-base-providers"><span class="octicon octicon-link"></span></a>Sample application to display Knowledge Base Providers</h3>
+
+<pre><code>&lt;?php
+  include 'kbService.php';
+  include 'oclcClient.php';
+?&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php   
+  $kbService = new kbService("mykey.txt");
+  $oclcClient = new oclcClient("index.php", $_GET);
+
+  $providers = $kbService-&gt;getProviders($oclcClient-&gt;serviceOpt, $oclcClient-&gt;pageOpt);
+
+  echo "&lt;h2&gt;KB Providers for {$kbService-&gt;getInstId()}&lt;/h2&gt;";
+  echo $oclcClient-&gt;getPaginationSummary($providers, "Providers");
+  echo $oclcClient-&gt;getTable($providers);       
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;    
+</code></pre>
       </section>
     </div>
 
