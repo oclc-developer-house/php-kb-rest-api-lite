@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Representation of a KB Settings record deserialized from JSON.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class kbSetting extends oclcData {
     public $institution_name;
     public $institution_id;

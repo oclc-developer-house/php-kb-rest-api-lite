@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Representation of a KB Entry record deserialized from JSON.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class kbEntry extends oclcData {
     public $title;
     public $entry_uid;

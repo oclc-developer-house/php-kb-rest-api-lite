@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Convernience class for displaying data objects returned by the KB Api.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class oclcClient {
 	public $page;
 	public $serviceOpt;

@@ -1,4 +1,10 @@
 <?php
+  /*
+   * Wrapper object for data returned by the kbService class.
+   * In addition to the raw data that is returned, object of this class contain additional data to format
+   * output and to generate links between pages of data and associated objects.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class oclcResult {
 	public $pager;
 	public $data;

@@ -1,4 +1,9 @@
 <?php
+  /*
+   * Sample KB Knowledge Base application page.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
+
   include 'kbService.php';
   include 'oclcClient.php';
 
