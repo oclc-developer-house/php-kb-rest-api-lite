@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Representation of a KB Collection record deserialized from JSON.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class kbCollection extends oclcData {
 	public $title;
 	public $provider_uid;

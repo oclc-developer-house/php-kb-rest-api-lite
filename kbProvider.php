@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Representation of a KB Provider record deserialized from JSON.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class kbProvider extends oclcData {
 	public $uid;
 	public $name;

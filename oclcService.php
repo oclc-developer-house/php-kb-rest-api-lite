@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Core class for accessing WorldCat REST API's via JSON
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 
 class oclcService { 
 	protected $inst_id;

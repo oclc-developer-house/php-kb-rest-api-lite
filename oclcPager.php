@@ -1,4 +1,8 @@
 <?php
+  /*
+   * Representation of pagination data retured by the WorldCat Knowledge Base API.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 class oclcPager extends oclcData {
 	public $total;
 	public $start;

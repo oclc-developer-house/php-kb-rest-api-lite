@@ -1,4 +1,8 @@
 <?php
+  /*
+   * PHP Representation of the WorldCat Knowledge Base API.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 include 'oclcService.php';
 include 'oclcData.php';
 include 'oclcPager.php';

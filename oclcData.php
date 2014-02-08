@@ -1,4 +1,9 @@
 <?php
+  /*
+   * Data object base class containing convenience methods for reading JSON.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
+
 class oclcData {
 		
     public function getJson($entry, $key, $default = "") {
@@ -16,6 +21,11 @@ class oclcData {
 	}
 	
 }
+
+  /*
+   * Configuration class defining the attributes of an oclcData object.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
 
 class oclcDataAttr {
 	public $id;

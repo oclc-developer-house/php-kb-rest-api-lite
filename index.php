@@ -1,4 +1,9 @@
 <?php
+  /*
+   * Sample KB Knowledge Base application page.
+   * Created by terrywbrady at OCLC Developer House 2014.
+   */
+
   include 'kbService.php';
   include 'oclcClient.php';
 
@@ -52,9 +57,22 @@ $(document).ready(function(){
       <label for="startIndex">Start Index</label>
       <input id="startIndex" type="number" name="startIndex" min="1" max="1000000" value="1" />
     </div>
-    <div class="opt providerUid collectionUid">
+    <div class="opt providerUid collectionUid entryUid">
       <label for="uid">UID</label>
       <input id="uid" type="text" name="uid"/>
+    </div>
+    <div class="opt providers collections entries">
+      <label for="title">Title</label>
+      <input id="title" type="text" name="title"/>
+      <em>Use % as a wildcard.</em>
+    </div>
+    <div class="opt entries">
+      <label for="isbn">ISBN</label>
+      <input id="isbn" type="text" name="isbn"/>
+    </div>
+    <div class="opt entries">
+      <label for="oclcnum">OCLC Number</label>
+      <input id="oclcnum" type="text" name="oclcnum"/>
     </div>
     <input type="submit"/>
   </form>
