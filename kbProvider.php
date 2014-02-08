@@ -1,5 +1,5 @@
 <?php
-class kbProvider extends kbData {
+class kbProvider extends oclcData {
 	public $uid;
 	public $name;
 	public $available_collections;
@@ -26,21 +26,29 @@ class kbProvider extends kbData {
 	}
 	
 	public static function getTableHeader() {
-		return array("Provider UID","Provider Name","Available Collections","Selected Collections",
-		  "Available Entries", "Selected Entries");
-	}
-
-	public function getTableValues() {
 		return array(
-		  $this->uid,
-		  $this->name,
-		  $this->available_collections,
-		  $this->selected_collections,
-		  $this->available_entries,
-		  $this->selected_entries
-		);
+		    new oclcDataAttr("uid", "Provider UID", true),
+		    new oclcDataAttr("name", "Provider Name", true),
+		    new oclcDataAttr("available_collections", "Available Collections", true),
+		    new oclcDataAttr("selected_collections", "Selected Collections", true),
+		    new oclcDataAttr("available_entries", "Available Entries", true),
+		    new oclcDataAttr("selected_entries", "Selected Entries", true),
+        ); 
 	}
-
+	
+	public function getLinkOptions($key) {
+		if ($key == "uid") {
+			return array("mode" => "providerUid", "uid" => $this->uid);
+		}
+		if ($key == "selected_collections") {
+			return array("mode" => "collections", "provider_uid" => $this->uid);
+		}
+		if ($key == "selected_entries") {
+			return array("mode" => "entries", "provider_uid" => $this->uid);
+		}
+		return array();
+	}
+	
 }
 
 ?>

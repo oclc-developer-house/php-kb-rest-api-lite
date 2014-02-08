@@ -1,5 +1,5 @@
 <?php
-class kbCollection extends kbData {
+class kbCollection extends oclcData {
 	public $title;
 	public $provider_uid;
 	public $provider_name;
@@ -53,50 +53,39 @@ class kbCollection extends kbData {
 	
 	public static function getTableHeader() {
 		return array(
-          "Title",
-          "Provider UID",
-          "Provider Name",
-          "Collection UID",
-          //"Owner Institution",
-          //"Source Institution",
-          //"Collection Status",
-          //"Collection Type",
-          //"Title Link Template",
-          //"Link Scheme",
-          //"UHF Version",
-          //"WCSYNC enabled",
-          //"MARC Delivery Enabled",
-          //"MARC Delivery No Delete",
-          //"Google Scholar Enabled",
-          //"Open",
-          "Available Entries",
-          "Selected Entries",
-          //"Local Stem",
-       );
+		    new oclcDataAttr("title", "Collection Title", true),
+		    new oclcDataAttr("provider_uid", "Provider UID", true),
+		    new oclcDataAttr("provider_name", "Provider Name", true),
+		    new oclcDataAttr("collection_uid", "Collection UID", true),
+	        new oclcDataAttr("owner_institution", "Owner Institution"),
+	        new oclcDataAttr("source_institution", "Source Institution"),
+	        new oclcDataAttr("collection_status", "Collection Status"),
+	        new oclcDataAttr("collection_type", "Collection Type"),
+	        new oclcDataAttr("title_link_template", "Title Link Template"),
+	        new oclcDataAttr("linkscheme", "Link Scheme"),
+	        new oclcDataAttr("uhf_version", "UHF Version"),
+	        new oclcDataAttr("wcsync_enabled", "WCSYNC Enabled"),
+	        new oclcDataAttr("marcdelivery_enabled", "Marc Delivery Enabled"),
+	        new oclcDataAttr("marcdelivery_no_delete", "Marc Delivery No Delete"),
+	        new oclcDataAttr("google_scholar_enabled", "Google Scholar Enabled"),
+	        new oclcDataAttr("open", "Open"),
+	        new oclcDataAttr("available_entries", "Available Entries"),
+	        new oclcDataAttr("selected_entries", "Selected Entries", true),
+	        new oclcDataAttr("localstem", "Local Stem"),
+        ); 
 	}
 
-	public function getTableValues() {
-		return array(
-	      $this->title,
-	      $this->provider_uid,
-	      $this->provider_name,
-	      $this->collection_uid,
-	      //$this->owner_institution,
-	      //$this->source_institution,
-	      //$this->collection_status,
-	      //$this->collection_type,
-	      //$this->title_link_template,
-	      //$this->linkscheme,
-	      //$this->uhf_version,
-	      //$this->wcsync_enabled,
-	      //$this->marcdelivery_enabled,
-	      //$this->marcdelivery_no_delete,
-	      //$this->google_scholar_enabled,
-	      //$this->open,
-	      $this->available_entries,
-	      $this->selected_entries,
-	      //$this->localstem,
-		);
+	public function getLinkOptions($key) {
+		if ($key == "collection_uid") {
+			return array("mode" => "collectionUid", "uid" => $this->collection_uid);
+		}
+		if ($key == "provider_name") {
+			return array("mode" => "providerUid", "uid" => $this->provider_uid);
+		}
+		if ($key == "selected_entries") {
+			return array("mode" => "entries", "collection_uid" => $this->collection_uid);
+		}
+		return array();
 	}
 
 }

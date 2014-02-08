@@ -1,5 +1,6 @@
 <?php
-class kbEntry extends kbData {
+class kbEntry extends oclcData {
+    public $title;
     public $entry_uid;
     public $entry_status;
     public $bkey;
@@ -12,7 +13,6 @@ class kbEntry extends kbData {
     public $publisher;
     public $coverage;
     public $coverage_enum;
-    public $title;
 	
 	public function __construct($json_entry) {
 		$this->title = $this->getJson($json_entry,'title');
@@ -41,40 +41,34 @@ class kbEntry extends kbData {
 	
 	public static function getTableHeader() {
 		return array(
-          "Title",
-          "Entry UID",
-          //"Entry Status",
-          //"BKey",
-          //"Collection UID",
-          "Collection Name",
-          //"Provider UID",
-          //"Provider Name",
-          "OCLCNUM",
-          "ISBN",
-          "Publisher",
-          //"Coverage",
-          //"Coverage Enum",
+            new oclcDataAttr("title", "Title", true),
+            new oclcDataAttr("entry_uid", "Entry UID", true),
+            new oclcDataAttr("entry_status", "Entry Status"),
+            new oclcDataAttr("bkey", "BKey"),
+            new oclcDataAttr("collection_uid", "Collection UID"),
+            new oclcDataAttr("collection_name", "Collection Name", true),
+            new oclcDataAttr("provider_uid", "Provider UID"),
+            new oclcDataAttr("provider_name", "Provider Name", true),
+            new oclcDataAttr("oclcnum", "OCLC number", true),
+            new oclcDataAttr("isbn", "ISBN", true),
+            new oclcDataAttr("publisher", "Publisher", true),
+            new oclcDataAttr("coverage", "Coverage"),
+            new oclcDataAttr("coverage_enum", "Coverage Enum"),
        );
 	}
 
-	public function getTableValues() {
-		return array(
-          $this->title,
-          $this->entry_uid,
-          //$this->entry_status,
-          //$this->bkey,
-          //$this->collection_uid,
-          $this->collection_name,
-          //$this->provider_uid,
-          //$this->provider_name,
-          $this->oclcnum,
-          $this->isbn,
-          $this->publisher,
-          //$this->coverage,
-          //$this->coverage_enum,
-		);
+	public function getLinkOptions($key) {
+		if ($key == "entry_uid") {
+			return array("mode" => "entryUid", "uid" => $this->entry_uid);
+		}
+		if ($key == "collection_name") {
+			return array("mode" => "collectionUid", "uid" => $this->collection_uid);
+		}
+		if ($key == "provider_name") {
+			return array("mode" => "providerUid", "uid" => $this->provider_uid);
+		}
+		return array();
 	}
-
 }
 
 ?>
